@@ -1,8 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -30,9 +29,6 @@ import { DataTableToolbar } from "./data-table-toolbar"
 import LoadingSpinner from "@/sharedComponents/LoadingSpinner"
 import { categoriesColumns, productColumns } from "./columns"
 import { Product } from "@/interfaces/Product"
-import { serviceGetAllProducts } from "@/services/products"
-import { toast } from "@/hooks/use-toast"
-import { serviceGetAllCategories } from "@/services/categories"
 import { Category } from "@/interfaces/Category"
 
 interface DataTableProps {

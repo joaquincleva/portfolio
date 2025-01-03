@@ -50,7 +50,7 @@ const Navbar = () => {
                     </li>
                 ))}
                 {cartContext.length > 0 && <li className={`flex cursor-pointer ${!isTop ? "text-gray-500" : "text-white"}`} onClick={() => { router.push("/cart") }}>
-                    <ShoppingCartIcon className="w-6 h-6" /> <Badge variant={"destructive"} className="rounded-full p-1 h-4">{cartContext.length}</Badge>
+                    <ShoppingCartIcon className="w-6 h-6" /> <Badge variant={"destructive"} className="rounded-full p-1 pt-1.5 h-4">{cartContext.length}</Badge>
                 </li>}
             </ul>
         </div>)

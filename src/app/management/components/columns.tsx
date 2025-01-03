@@ -1,6 +1,5 @@
 "use client"
 
-import { ColumnDef } from "@tanstack/react-table"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 import { DataTableCategories } from "./data-table-toolbar"
@@ -23,8 +22,7 @@ const fetchData: any = async () => {
       return { label: `${category.name}`, value: `${category.id}` }
     })
   } catch (e) {
-    console.error("Ha ocurrido un error en la petición.");
-    toast({ description: "No se han podido obtener las categorías" })
+    toast({ description: "Couldn't get categories", variant: "destructive" })
   }
 };
 fetchData();
