@@ -1,6 +1,7 @@
 import { Category } from "@/interfaces/Category";
 import { Product } from "@/interfaces/Product";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 interface DealSectionsProps {
     categories: Category[];
@@ -16,6 +17,30 @@ const DealSection = ({ categories,
     selectedDealProduct }: DealSectionsProps) => {
 
     const router = useRouter();
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries[0];
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.2 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
 
     const formatTime = (seconds: number): string => {
         const hrs = String(Math.floor(seconds / 3600)).padStart(2, "0");
@@ -26,7 +51,8 @@ const DealSection = ({ categories,
 
     return (
         <div className="z-50 text-black bg-white flex items-center py-20 px-32">
-            <div className="flex items-center justify-center w-2/4">
+            <div
+                ref={sectionRef} className={`flex items-center justify-center w-2/4 transition-opacity duration-700 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
                 <div className="cursor-pointer minip flex justify-end group mx-auto w-[300px] h-[450px] bg-gray-300 relative">
                     <div className="mg absolute top-0 left-0 w-full h-[200px] grid grid-cols-[250px_50px] grid-rows-[100px_150px] transition-[grid-template-columns,grid-template-rows] duration-500 ease-linear group-hover:grid-cols-[150px_150px] group-hover:grid-rows-[50px_300px]">
                         <div className="relative clr bg-[#333]">

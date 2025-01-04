@@ -42,15 +42,8 @@ export default function RootLayout({
       <CartProvider>
         <html lang="en">
           <body
-            className={`${geistSans.variable} ${geistMono.variable} bg-gradient-to-b from-[#000] to-[#1a1a1a] antialiased flex flex-col min-w-screen h-full min-h-screen scrollbar-custom justify-between items-center`}
+            className={`${geistSans.variable} ${geistMono.variable} bg-gradient-to-b from-[#000] to-[#1a1a1a] antialiased flex flex-col max-w-screen min-w-screen h-full min-h-screen scrollbar-custom justify-between items-center`}
           >
-            <div className="absolute w-full max-w-screen h-full mx-auto flex items-center justify-center overflow-hidden">
-              <div className="line ml-[50%]"></div>
-              <div className="line ml-[25%]"></div>
-              <div className="line"></div>
-              <div className="line mr-[25%]"></div>
-              <div className="line mr-[50%]"></div>
-            </div>
             <Navbar />
             {children}
             <Footer />

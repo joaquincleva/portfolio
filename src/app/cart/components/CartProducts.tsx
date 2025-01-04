@@ -1,13 +1,39 @@
 import { Card } from "@/components/ui/card";
 import { useCartContext } from "@/store/CartContext";
 import { Trash2Icon } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const CartProducts = () => {
 
     const { cartContext, setCartContext } = useCartContext();
 
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries[0];
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.2 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <div className="flex flex-col gap-4 w-full max-w-3xl mx-auto overflow-auto">
+        <div ref={sectionRef}  className={`flex flex-col gap-4 w-full max-w-3xl mx-auto overflow-auto transition-opacity duration-700 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
             {cartContext.map((product) => (
                 <Card
                     key={product.product.id}

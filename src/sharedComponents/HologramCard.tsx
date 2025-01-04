@@ -1,6 +1,7 @@
 import { Category } from "@/interfaces/Category";
 import { Product } from "@/interfaces/Product";
 import { useRouter } from "next/navigation"
+import { useEffect, useRef, useState } from "react";
 
 interface HologramCardProps {
     index: number;
@@ -8,13 +9,40 @@ interface HologramCardProps {
     categories: Category[];
 }
 
-const HologramCard = ({index, item, categories}: HologramCardProps) => {
+const HologramCard = ({ index, item, categories }: HologramCardProps) => {
     const router = useRouter();
+
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries[0];
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.2 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
     return (
         <div
+            ref={sectionRef}
             key={index}
             rel="noopener noreferrer"
-            className="group w-[200px] cursor-pointer h-[300px] rounded-xl flex-col relative flex justify-center items-end mx-6 perspective"
+            className={`group w-[200px] cursor-pointer h-[300px] rounded-xl flex-col relative flex justify-center items-end mx-6 perspective  transition-opacity duration-700 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}
             onClick={() => router.push(`/product/${item.id}`)}
         >
             <div className="absolute inset-0 rounded-xl transition-transform duration-500 group-hover:-translate-y-2 group-hover:rotate-y-25deg group-hover:shadow-lg">

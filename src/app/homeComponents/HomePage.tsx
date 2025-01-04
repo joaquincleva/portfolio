@@ -144,7 +144,13 @@ const HomePage = () => {
   }, [categories, products]);
     return (
         <div className="relative mt-16 w-full h-auto z-10 justify-between">
-
+             <div className="absolute w-full max-w-screen h-full mx-auto flex items-center justify-center overflow-hidden">
+              <div className="line ml-[50%]"></div>
+              <div className="line ml-[25%]"></div>
+              <div className="line"></div>
+              <div className="line mr-[25%]"></div>
+              <div className="line mr-[50%]"></div>
+            </div>
             <DraggableImage images={products.map((item) => item.hologramImage)} />
             <div className="relative max-w-full w-full flex flex-col px-32">
                 <HeroSection
@@ -170,9 +176,9 @@ const HomePage = () => {
                         selectedDealProduct={selectedDealProduct} />
                     <BestSellingCarousel mostSealedProducts={mostSealedProducts} categories={categories} />
                     <CategoriesCard categories={categories} products={products} />
-                    <div className="w-full flex justify-center bg-white py-16 pt-20">
+                    <div key={1} className="w-full flex justify-center bg-white py-16 pt-20">
                         {products.filter((_, index) => index <= 4).map((item:Product, index:number) => (
-                            <HologramCard index={index} item={item} categories={categories} />
+                            <HologramCard key={index} index={index} item={item} categories={categories} />
                         ))}
                     </div>
                 </div>

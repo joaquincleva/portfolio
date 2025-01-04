@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Category } from "@/interfaces/Category"
 import { Product } from "@/interfaces/Product"
+import { useEffect, useRef, useState } from "react"
 
 interface CategoriesCardProps {
     products: Product[]
@@ -9,8 +10,34 @@ interface CategoriesCardProps {
 }
 
 const CategoriesCard = ({ categories, products }: CategoriesCardProps) => {
+
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries[0];
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.2 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <div className="w-full flex-wrap justify-center gap-6 px-10 flex py-16">
+        <div ref={sectionRef} className={`w-full flex-wrap justify-center gap-6 px-10 flex py-16 transition-opacity duration-700 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
             {categories.map((item: Category, index: number) => (
 
                 <Card key={index} className="w-[23%] bg-transparent text-white hover:text-black hover:bg-white hover:border-[#de942c] border p-0 border-blue-500 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] group hover:-translate-y-3 transition-all delay-100 duration-300">
