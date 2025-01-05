@@ -74,18 +74,18 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
 
     return (
         <Dialog open={dialogOpen} onOpenChange={() => { setEditItem(null); setDialogOpen(false) }}>
-            <DialogContent className="z-[65] mt-6 mb-20 max-h-[90vh] overflow-auto">
+            <DialogContent className="z-[65] mt-6 mb-20 max-h-[90vh] min-w-[40vw] max-w-[95vw] xl:max-w-[50vw] overflow-auto">
                 <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="xl:text-xl 2xl:text-2xl">
                         {editItem ? "Edit Item" : "Add New Item"}
                     </DialogTitle>
-                    <DialogDescription>
+                    <DialogDescription className="2xl:text-xl">
                         Fill the form below to save the item.
                     </DialogDescription>
                 </DialogHeader>
-                <form onSubmit={formik.handleSubmit} className="space-y-4 px-2 pt-2 overflow-x-auto">
+                <form onSubmit={formik.handleSubmit} className="space-y-4 px-2 pt-2 overflow-x-auto 2xl:text-lg">
                     <div className="flex space-y-1 flex-col">
-                        <Label htmlFor="name">Name</Label>
+                        <Label htmlFor="name" className="xl:text-base 2xl:text-lg">Name</Label>
                         <Input
                             id="name"
                             name="name"
@@ -93,14 +93,14 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                             onBlur={() => formik.setFieldTouched("name", true)}
                             value={formik.values.name}
                             onChange={formik.handleChange}
-                            className="input"
+                            className="input xl:text-base 2xl:text-lg"
                         />
-                        {formik.errors.name && formik.touched.name && (<span className="text-red-500 text-xs">{formik.errors.name}</span>)}
+                        {formik.errors.name && formik.touched.name && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.name}</span>)}
                     </div>
                     {isProductTab && (
                         <>
                             <div className="flex space-y-1 flex-col">
-                                <Label htmlFor="description">Description</Label>
+                                <Label htmlFor="description" className="xl:text-base 2xl:text-lg">Description</Label>
                                 <Textarea
                                     id="description"
                                     name="description"
@@ -108,25 +108,26 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                     onBlur={() => formik.setFieldTouched("description", true)}
                                     value={formik.values.description}
                                     onChange={formik.handleChange}
-                                    className="textarea"
+                                    className="textarea xl:text-base 2xl:text-lg"
                                 />
-                                {formik.errors.description && formik.touched.description && (<span className="text-red-500 text-xs">{formik.errors.description}</span>)}
+                                {formik.errors.description && formik.touched.description && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.description}</span>)}
                             </div>
                             <div className="flex space-y-2 flex-col">
-                                <Label htmlFor="mainImage">Main Image</Label>
-                                <div className="flex gap-2">
+                                <Label htmlFor="mainImage" className="xl:text-base 2xl:text-lg">Main Image</Label>
+                                <div className="flex gap-2 xl:text-base 2xl:text-lg items-center">
                                     <Switch
                                         checked={uploadMode.mainImage === "url"}
                                         onCheckedChange={() =>
                                             handleSwitchChange("mainImage", uploadMode.mainImage === "file" ? "url" : "file")
                                         }
                                     />
-                                    <span className="text-sm text-light">{uploadMode.mainImage === "file" ? "File" : "Url"}</span>
+                                    <span className="text-sm text-light xl:text-base 2xl:text-lg">{uploadMode.mainImage === "file" ? "File" : "Url"}</span>
                                 </div>
                                 {uploadMode.mainImage === "file" ? (
                                     <Input
                                         id="mainImage"
                                         name="mainImage"
+                                        className="xl:text-base 2xl:text-lg"
                                         type="file"
                                         onBlur={() => formik.setFieldTouched("mainImage", true)}
                                         onChange={(e) => {
@@ -139,30 +140,33 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                     <Input
                                         id="mainImageUrl"
                                         name="mainImage"
+                                        className="xl:text-base 2xl:text-lg"
                                         placeholder="Enter a valid image URL"
                                         onBlur={() => formik.setFieldTouched("mainImage", true)}
                                         onChange={(e) => formik.setFieldValue("mainImage", e.target.value)}
                                     />
                                 )}
-                                {formik.errors.mainImage && formik.touched.mainImage && (<span className="text-red-500 text-xs">{formik.errors.mainImage}</span>)}
+                                {formik.errors.mainImage && formik.touched.mainImage && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.mainImage}</span>)}
                                 {formik.values.mainImage && (<img src={formik.values.mainImage} alt="Main Image" className="self-center w-1/2" />)}
                             </div>
                             <div className="flex space-y-2 flex-col">
-                                <Label htmlFor="hologramImage">Hologram Image</Label>
-                                <div className="flex gap-2">
+                                <Label htmlFor="hologramImage" className="xl:text-base 2xl:text-lg">Hologram Image</Label>
+                                <div className="flex gap-2 items-center xl:text-base 2xl:text-lg">
                                     <Switch
                                         checked={uploadMode.hologramImage === "url"}
                                         onCheckedChange={() =>
                                             handleSwitchChange("hologramImage", uploadMode.hologramImage === "file" ? "url" : "file")
                                         }
                                     />
-                                    <span className="text-sm text-light">{uploadMode.hologramImage === "file" ? "File" : "Url"}</span>
+                                    <span className="text-sm text-light xl:text-base 2xl:text-lg">{uploadMode.hologramImage === "file" ? "File" : "Url"}</span>
                                 </div>
                                 {uploadMode.hologramImage === "file" ? (
                                     <Input
                                         id="hologramImage"
+                                        className="xl:text-base 2xl:text-lg"
                                         name="hologramImage"
                                         type="file"
+                                        accept="image/png"
                                         onBlur={() => formik.setFieldTouched("hologramImage", true)}
                                         onChange={(e) => {
                                             if (e.target.files) {
@@ -173,18 +177,19 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                 ) : (
                                     <Input
                                         id="hologramImage"
+                                        className="xl:text-base 2xl:text-lg"
                                         name="hologramImage"
                                         placeholder="Enter a valid image URL"
                                         onBlur={() => formik.setFieldTouched("hologramImage", true)}
                                         onChange={(e) => formik.setFieldValue("hologramImage", e.target.value)}
                                     />
                                 )}
-                                {formik.errors.hologramImage && formik.touched.hologramImage && (<span className="text-red-500 text-xs">{formik.errors.hologramImage}</span>)}
+                                {formik.errors.hologramImage && formik.touched.hologramImage && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.hologramImage}</span>)}
                                 {formik.values.hologramImage && (<img src={formik.values.hologramImage} alt="Hologram" className="self-center w-1/2" />)}
                             </div>
                             <div className="flex justify-between">
                                 <div className="flex w-1/2 space-y-2 flex-col pr-1">
-                                    <Label htmlFor="price">Price</Label>
+                                    <Label htmlFor="price" className="xl:text-base 2xl:text-lg">Price</Label>
                                     <div className="relative">
                                         <Input
                                             name="price"
@@ -193,14 +198,14 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                             onBlur={() => formik.setFieldTouched("price", true)}
                                             value={formik.values.price}
                                             onChange={formik.handleChange}
-                                            className="input text-right"
+                                            className="input text-right xl:text-base 2xl:text-lg"
                                         />
                                         <span className="absolute left-4 top-[20%]">$</span>
                                     </div>
-                                    {formik.errors.price && formik.touched.price && (<span className="text-red-500 text-xs">{formik.errors.price}</span>)}
+                                    {formik.errors.price && formik.touched.price && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.price}</span>)}
                                 </div>
                                 <div className="flex w-1/2 space-y-2 flex-col pl-1">
-                                    <Label htmlFor="price">Stock</Label>
+                                    <Label htmlFor="price" className="xl:text-base 2xl:text-lg">Stock</Label>
                                     <Input
                                         id="price"
                                         name="stock"
@@ -210,14 +215,14 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                         value={formik.values.stock}
                                         onBlur={() => formik.setFieldTouched("stock", true)}
                                         onChange={formik.handleChange}
-                                        className="input text-right"
+                                        className="input text-right xl:text-base 2xl:text-lg"
                                     />
-                                    {formik.errors.stock && formik.touched.stock && (<span className="text-red-500 text-xs">{formik.errors.stock}</span>)}
+                                    {formik.errors.stock && formik.touched.stock && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.stock}</span>)}
                                 </div>
                             </div>
                             <div className="flex justify-between">
                                 <div className="flex w-1/2 space-y-2 flex-col pr-1">
-                                    <Label htmlFor="salesQty">Sales Quantity</Label>
+                                    <Label htmlFor="salesQty" className="xl:text-base 2xl:text-lg">Sales Quantity</Label>
                                     <Input
                                         id="salesQty"
                                         name="salesQty"
@@ -226,12 +231,12 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                         value={formik.values.salesQty}
                                         onBlur={() => formik.setFieldTouched("salesQty", true)}
                                         onChange={formik.handleChange}
-                                        className="input"
+                                        className="input xl:text-base 2xl:text-lg"
                                     />
-                                    {formik.errors.salesQty && formik.touched.salesQty && (<span className="text-red-500 text-xs">{formik.errors.salesQty}</span>)}
+                                    {formik.errors.salesQty && formik.touched.salesQty && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.salesQty}</span>)}
                                 </div>
                                 <div className="flex w-1/2 space-y-2 flex-col pr-1">
-                                    <Label htmlFor="offerPercentage">Deal Percentage</Label>
+                                    <Label htmlFor="offerPercentage" className="xl:text-base 2xl:text-lg">Deal Percentage</Label>
                                     <Input
                                         id="offerPercentage"
                                         name="offerPercentage"
@@ -242,21 +247,22 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                         value={formik.values.offerPercentage}
                                         onBlur={() => formik.setFieldTouched("offerPercentage", true)}
                                         onChange={formik.handleChange}
-                                        className="input"
+                                        className="input xl:text-base 2xl:text-lg"
                                     />
-                                    {formik.errors.offerPercentage && formik.touched.offerPercentage && (<span className="text-red-500 text-xs">{formik.errors.offerPercentage}</span>)}
+                                    {formik.errors.offerPercentage && formik.touched.offerPercentage && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.offerPercentage}</span>)}
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="images">Images</Label>
-                                <div className="flex gap-2">
+                                <Label htmlFor="images" className="xl:text-base 2xl:text-lg">Images</Label>
+                                <div className="flex gap-2 xl:text-base 2xl:text-lg items-center">
                                     <Switch
+                                        className="xl:text-base 2xl:text-lg"
                                         checked={uploadMode.images === "url"}
                                         onCheckedChange={() =>
                                             handleSwitchChange("images", uploadMode.images === "file" ? "url" : "file")
                                         }
                                     />
-                                    <span className="text-sm text-light">{uploadMode.images === "file" ? "File" : "Url"}</span>
+                                    <span className="text-sm text-light xl:text-base 2xl:text-lg">{uploadMode.images === "file" ? "File" : "Url"}</span>
                                 </div>
                                 {uploadMode.images === "file" ? (
                                     <Input
@@ -264,6 +270,7 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                         name="images"
                                         type="file"
                                         multiple
+                                        className="xl:text-base 2xl:text-lg"
                                         onChange={(e) => {
                                             if (e.target.files) {
                                                 handleMultipleFileUpload(e.target.files);
@@ -286,10 +293,11 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                                         }
                                                     }}
                                                     placeholder={`Image URL ${index + 1}`}
-                                                    className="flex-1"
+                                                    className="flex-1 xl:text-base 2xl:text-lg"
                                                 />
                                                 <Button
                                                     variant="outline"
+                                                    className="xl:text-base 2xl:text-lg"
                                                     onClick={() => {
                                                         const updatedImages = formik.values.images ? [...formik.values.images] : [];
                                                         updatedImages.splice(index, 1);
@@ -307,12 +315,12 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                                     formik.setFieldValue("images", [e.target.value, ""]);
                                                 }}
                                                 placeholder="Enter image URL"
-                                                className="flex-1"
+                                                className="flex-1 xl:text-base 2xl:text-lg"
                                             />
                                         )}
                                     </div>
                                 )}
-                                {formik.errors.images && formik.touched.images && (<span className="text-red-500 text-xs">{formik.errors.images}</span>)}
+                                {formik.errors.images && formik.touched.images && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.images}</span>)}
                                 {formik.values?.images && formik.values?.images?.length > 0 && (
                                     <Carousel className="w-full">
                                         <CarouselContent>
@@ -335,29 +343,30 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                             </div>
                             <Select name="categoryId" defaultValue={formik.values.categoryId}
                                 onValueChange={(value) => formik.setFieldValue("categoryId", value)}>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Category" />
+                                <SelectTrigger className="w-full xl:text-base 2xl:text-lg">
+                                    <SelectValue className="xl:text-base 2xl:text-lg" placeholder="Category" />
                                 </SelectTrigger>
                                 <SelectContent className="z-[70]"
                                     defaultValue={formik.values.categoryId}>
                                     <SelectGroup defaultValue={formik.values.categoryId}>
-                                        <SelectLabel>Category</SelectLabel>
+                                        <SelectLabel className="xl:text-base 2xl:text-lg">Category</SelectLabel>
                                         {categories.map((category: Category) => (
-                                            <SelectItem key={category.id} value={`${category.id}`}>
+                                            <SelectItem key={category.id} value={`${category.id}`} className="xl:text-base 2xl:text-lg">
                                                 {category.name}
                                             </SelectItem>
                                         ))}
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
-                            {formik.errors.categoryId && formik.touched.categoryId && (<span className="text-red-500 text-xs">{formik.errors.categoryId}</span>)}
+                            {formik.errors.categoryId && formik.touched.categoryId && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.categoryId}</span>)}
                         </>
                     )}
                     {!isProductTab && (
                         <div className="flex space-y-2 flex-col">
-                            <Label htmlFor="image">Image</Label>
-                            <div className="flex gap-2">
+                            <Label htmlFor="image" className="xl:text-base 2xl:text-lg">Image</Label>
+                            <div className="flex gap-2 items-center">
                                 <Switch
+                                    className="xl:text-base 2xl:text-lg"
                                     checked={uploadMode.image === "url"}
                                     onCheckedChange={() =>
                                         handleSwitchChange("image", uploadMode.image === "file" ? "url" : "file")
@@ -370,6 +379,7 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                     id="image"
                                     name="image"
                                     type="file"
+                                    className="xl:text-base 2xl:text-lg"
                                     onBlur={() => formik.setFieldTouched("image", true)}
                                     onChange={(e) => {
                                         if (e.target.files) {
@@ -381,12 +391,13 @@ const CreateOrEditDialog = ({ categories, dialogOpen, editItem, setEditItem, set
                                 <Input
                                     id="image"
                                     name="image"
+                                    className="xl:text-base 2xl:text-lg"
                                     placeholder="Enter a valid image URL"
                                     onBlur={() => formik.setFieldTouched("image", true)}
                                     onChange={(e) => formik.setFieldValue("image", e.target.value)}
                                 />
                             )}
-                            {formik.errors.image && formik.touched.image && (<span className="text-red-500 text-xs">{formik.errors.image}</span>)}
+                            {formik.errors.image && formik.touched.image && (<span className="text-red-500 text-xs 2xl:text-base">{formik.errors.image}</span>)}
                             {formik.values.image && (<img src={formik.values.image} alt="Hologram" className="self-center w-1/2" />)}
                         </div>
                     )}

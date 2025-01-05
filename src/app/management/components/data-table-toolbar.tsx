@@ -44,15 +44,15 @@ export function DataTableToolbar<TData>({
   }, []);
 
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex flex-1 items-center space-x-2">
+    <div className="flex items-center justify-between mb-2">
+      <div className="flex flex-1 flex-col md:flex-row items-start med:items-center lg:space-x-2">
         <Input
           placeholder={isProduct ? "Filter Funkos...": "Filter categories..."}
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
-          className="h-8 w-[150px] lg:w-[250px]"
+          className="h-8 w-[150px] lg:w-[250px] text-sm lg:text-base"
         />
         {isProduct && table.getColumn("categoryId") && (
           <DataTableFacetedFilter
@@ -65,7 +65,7 @@ export function DataTableToolbar<TData>({
           <Button
             variant="ghost"
             onClick={() => table.resetColumnFilters()}
-            className="h-8 px-2 lg:px-3"
+            className="h-8 px-3"
           >
             Reset
             <X />

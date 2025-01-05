@@ -46,21 +46,21 @@ const CartProducts = () => {
                             className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 xl:w-20 xl:h-20 2xl:w-28 2xl:h-28 object-cover rounded-lg"
                         />
                         <div>
-                            <h3 className="text-xs sx:text-sm sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl font-semibold">
+                            <h3 className="text-xs sx:text-sm sm:text-base md:text-lg xl:text-xl 2xl:text-3xl font-semibold">
                                 {product.product.name}
                             </h3>
                         </div>
                     </div>
                     <div className="flex items-center gap-1">
-                        <p className="text-xs sx:text-sm sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl">
+                        <p className="text-xs sx:text-sm sm:text-base md:text-lg xl:text-xl 2xl:text-3xl">
                             ${" "}
                             {(
                                 product.product.price *
                                 (1 - (product.product.offerPercentage || 0))
                             ).toFixed(2)}
                         </p>
-                        <p className="text-xs sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl text-[#de942c]">x{product.quantity}</p>
-                        <p className="text-xs sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl px-4 font-semibold">
+                        <p className="text-xs sm:text-base md:text-lg xl:text-xl 2xl:text-3xl text-[#de942c]">x{product.quantity}</p>
+                        <p className="text-xs sm:text-base md:text-lg xl:text-xl 2xl:text-3xl px-4 font-semibold">
                             ${" "}
                             {(
                                 product.product.price *

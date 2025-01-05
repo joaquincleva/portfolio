@@ -245,7 +245,7 @@ const ManagementPage = () => {
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="ml-auto hidden h-8 lg:flex"
+                                className="ml-auto h-8flex"
                                 onClick={handleAddNew}
                             >
                                 <PlusCircle />
@@ -255,7 +255,7 @@ const ManagementPage = () => {
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className="ml-auto hidden h-8 lg:flex"
+                                className="ml-auto h-8 flex"
                                 onClick={handleAddNew}
                             >
                                 <PlusCircle />

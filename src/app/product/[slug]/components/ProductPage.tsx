@@ -32,6 +32,8 @@ const ProductPage = () => {
                 const responseProducts: any = await serviceGetProductById(typeof params?.slug === "string" ? params.slug : "");
                 if (responseProducts.name) {
                     setProduct(responseProducts)
+                    const productInCart = cartContext.find(item => item.product.id === responseProducts.id);
+                    setQtyToAdd(productInCart ? productInCart.quantity : 0);
                 } else {
                     router.push("/")
                 };
@@ -74,7 +76,7 @@ const ProductPage = () => {
         if (!box) return;
 
         const posX = (e.pageX / (window.innerWidth * 1.25)) * 100;
-        const posY = (e.pageY / (window.innerHeight >= 1280 ? (window.innerHeight) : (window.innerHeight*1.75))) * 100;
+        const posY = (e.pageY / (window.innerHeight >= 1280 ? (window.innerHeight) : (window.innerHeight * 1.75))) * 100;
 
         if (backgroundImage) {
             box.style.backgroundImage = backgroundImage;
@@ -131,7 +133,7 @@ const ProductPage = () => {
                             <div className="flex items-center">
                                 <span>${((product?.price || 1) * (1 - (product?.offerPercentage || 0))).toFixed(2)}</span>
                                 {product?.offerPercentage && (
-                                    <span className="text-[#de942c] text-lg pl-4">
+                                    <span className="text-[#de942c] text-lg pl-2 2xl:pl-4">
                                         {product?.offerPercentage ? `${product?.offerPercentage * 100} %OFF` : " "}
                                     </span>
                                 )}
@@ -167,7 +169,15 @@ const ProductPage = () => {
                             disabled={product?.stock === 0 || qtyToAdd === 0}
                             className="ml-2 bg-blue-500 hover:brightness-110 hover:bg-blue-500 2xl:text-2xl 2xl:h-14"
                             onClick={() => {
-                                setCartContext([...cartContext, { product: product as Product, quantity: qtyToAdd }]);
+                                const existingProductIndex = cartContext.findIndex(item => item.product.id === product?.id);
+
+                                if (existingProductIndex !== -1) {
+                                    const updatedCart = [...cartContext];
+                                    updatedCart[existingProductIndex].quantity = qtyToAdd;
+                                    setCartContext(updatedCart);
+                                } else {
+                                    setCartContext([...cartContext, { product: product as Product, quantity: qtyToAdd }]);
+                                }
                             }}
                         >
                             Add to cart

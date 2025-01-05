@@ -73,64 +73,67 @@ export function DataTable({ isProduct, handleEdit, handleDelete, products, categ
   })
 
   return (
-    <div className="space-y-4">
-      <DataTableToolbar isProduct={isProduct} table={table} />
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id} colSpan={header.colSpan}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                    </TableHead>
-                  )
-                })}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
+    <div className="space-y-4 min-h-[80vh] flex flex-col justify-between">
+      <div>
+        <DataTableToolbar isProduct={isProduct} table={table} />
+        <div className="rounded-md border">
+          <Table>
+            <TableHeader>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <TableHead key={header.id} colSpan={header.colSpan}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                      </TableHead>
+                    )
+                  })}
                 </TableRow>
-              ))
-            ) :
-              <TableRow className="w-full">
+              ))}
+            </TableHeader>
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    className="min-h-48"
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id} className="min-h-48">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) :
+                <TableRow className="w-full">
 
-                <TableCell
-                  colSpan={products.length}
-                  className="h-48 text-center relative w-full"
-                >
-                  {loading ?
-                    <div className="flex w-[94vw] absolute left-2/5 h-auto top-12 justify-center items-center">
-                      <LoadingSpinner width={150} height={150} />
-                    </div> :
-                    <span>No results.</span>
+                  <TableCell
+                    colSpan={products.length}
+                    className="h-48 text-center relative w-full"
+                  >
+                    {loading ?
+                      <div className="flex w-[94vw] absolute left-2/5 h-auto top-12 justify-center items-center">
+                        <LoadingSpinner width={150} height={150} />
+                      </div> :
+                      <span>No results.</span>
 
-                  }
-                </TableCell>
-              </TableRow>
-            }
-          </TableBody>
-        </Table>
+                    }
+                  </TableCell>
+                </TableRow>
+              }
+            </TableBody>
+          </Table>
+        </div>
       </div>
       <DataTablePagination table={table} />
     </div>

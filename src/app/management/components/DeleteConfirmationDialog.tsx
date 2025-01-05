@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Separator } from "@/components/ui/separator";
 
 interface DeleteConfirmationDialogProps {
     confirmationDialogOpen: boolean
@@ -11,16 +12,17 @@ interface DeleteConfirmationDialogProps {
 const DeleteConfirmationDialog = ({ confirmationDialogOpen, setConfirmationDialogOpen, loadingPost, confirmDelete }: DeleteConfirmationDialogProps) => {
     return (
         <Dialog open={confirmationDialogOpen} onOpenChange={setConfirmationDialogOpen}>
-            <DialogContent className="z-[65] mt-6 mb-20 max-h-[90vh] overflow-auto">
+            <DialogContent className="z-[65] mt-6 mb-20 max-h-[90vh] min-w-[40vw] max-w-[90vw] xl:max-w-[50vw]  overflow-auto">
                 <DialogHeader>
-                    <DialogTitle>Confirm Deletion</DialogTitle>
+                    <DialogTitle className="xl:text-xl 2xl:text-3xl">Confirm Deletion</DialogTitle>
                 </DialogHeader>
-                <p>Are you sure you want to delete this item? This action cannot be undone.</p>
-                <DialogFooter>
-                    <Button variant="outline" onClick={() => setConfirmationDialogOpen(false)}>
+                <Separator />
+                <p className="2xl:text-xl">Are you sure you want to delete this item? This action cannot be undone.</p>
+                <DialogFooter className="gap-y-2">
+                    <Button className="xl:text-lg 2xl:text-2xl xl:p-4 2xl:p-6" variant="outline" onClick={() => setConfirmationDialogOpen(false)}>
                         Cancel
                     </Button>
-                    <Button variant="destructive" disabled={loadingPost} onClick={confirmDelete}>
+                    <Button className="xl:text-lg 2xl:text-2xl xl:p-4 2xl:p-6" variant="destructive" disabled={loadingPost} onClick={confirmDelete}>
                         {loadingPost ? <div>
                             <svg aria-hidden="true" className="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />

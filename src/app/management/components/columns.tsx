@@ -35,8 +35,8 @@ export const productColumns: any = ({ handleEdit, handleDelete }: DataColumn) =>
     ),
     cell: ({ row }:any) => {
       return (
-        <div className="flex w-[100px] items-center">
-          <img className="h-14 rounded-lg" src={row.getValue("mainImage")}>
+        <div className="flex w-[100px] xl:w-[200px] 2xl:w-[250px] items-center">
+          <img className="h-16 2xl:h-24 rounded-lg" src={row.getValue("mainImage")}>
           </img>
         </div>
       )
@@ -49,8 +49,8 @@ export const productColumns: any = ({ handleEdit, handleDelete }: DataColumn) =>
     ),
     cell: ({ row }:any) => {
       return (
-        <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium">
+        <div className="flex space-x-2 xl:min-h-16 2xl:min-h-36 items-center">
+          <span className="max-w-[500px] 2xl:text-xl truncate font-medium">
             {row.getValue("name")}
           </span>
         </div>
@@ -65,7 +65,7 @@ export const productColumns: any = ({ handleEdit, handleDelete }: DataColumn) =>
     ),
     cell: ({ row }:any) => {
       return (
-        <div className="flex items-center">
+        <div className="flex items-center  2xl:text-xl ">
           {row.getValue("offerPercentage") ? <span>{Number(row.getValue("offerPercentage")) * 100}%</span> : null}
         </div>
       )
@@ -82,7 +82,7 @@ export const productColumns: any = ({ handleEdit, handleDelete }: DataColumn) =>
     cell: ({ row }:any) => {
 
       return (
-        <div className="flex items-center">
+        <div className="flex items-center  2xl:text-xl ">
           <span>{row.getValue("stock")}</span>
         </div>
       )
@@ -99,7 +99,7 @@ export const productColumns: any = ({ handleEdit, handleDelete }: DataColumn) =>
     cell: ({ row }:any) => {
 
       return (
-        <div className="flex items-center">
+        <div className="flex items-center  2xl:text-xl ">
           <span>{row.getValue("salesQty")}</span>
         </div>
       )
@@ -119,7 +119,7 @@ export const productColumns: any = ({ handleEdit, handleDelete }: DataColumn) =>
         return null
       }
       return (
-        <div className="flex space-x-2">
+        <div className="flex space-x-2  2xl:text-xl ">
           <span className="max-w-[500px] truncate font-medium">
             {category.label}
           </span>
