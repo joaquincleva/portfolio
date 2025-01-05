@@ -35,8 +35,8 @@ const Footer = () => {
         </div>
         <div className="text-center text-sm">
             © 2024 Copyright
-            <a href="https://clevatech.com" className="pl-2 text-gray-400 hover:underline">
-                ClevaTech.com
+            <a href="https://clevatech.vercel.app/" className="pl-2 text-gray-400 hover:underline">
+                ClevaTech.vercel.app
             </a>
         </div>
     </footer>

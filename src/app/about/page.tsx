@@ -10,15 +10,7 @@ export const metadata: Metadata = {
         url: "https://clevatech.vercel.app/about",
         siteName: "ClevaTech",
         type: "website",
-        images: [
-            {
-                url: "./joaquin_cleva.png",
-                secureUrl: "./joaquin_cleva.png",
-                width: 630,
-                height: 1200,
-                alt: `About me image`,
-            },
-        ],
+        images: ["/joaquin_cleva.png"],
     },
     twitter: {
         card: "player",
