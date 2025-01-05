@@ -30,8 +30,8 @@ const Navbar = () => {
         >
             <div className={`flex items-center hover:text-gray-500 text-white cursor-pointer ${!isTop ? "pl-15" : ""}`} onClick={() => { router.push("/") }}>
                 <Logo fill={isTop ? "#fff" : "#6b7280"}
-                    width={isTop && window.innerWidth >= 768 ? "3.5em" : "2.5em"}
-                    height={isTop && window.innerWidth >= 768 ? "3.5em" : "2.5em"}
+                    width={typeof window === "undefined" ? "2.5em" : isTop && window.innerWidth >= 768 ? "3.5em" : "2.5em"}
+                    height={typeof window === "undefined" ? "2.5em" : isTop && window.innerWidth >= 768 ? "3.5em" : "2.5em"}
                 />
                 {isTop && <p className="hidden md:block pl-4 font-bold text-2xl">Cleva Tech</p>}
             </div>

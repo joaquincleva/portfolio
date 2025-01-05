@@ -5,14 +5,14 @@ import { toast } from "@/hooks/use-toast";
 import { Product } from "@/interfaces/Product";
 
 type Props = {
-    params: { id: string; slug: "string" };
-    searchParams: { [key: string]: string | string[] | undefined };
+    params: Promise<{ id: string; slug: string }>;
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata(
     { params }: Props,
 ): Promise<Metadata> {
-    const id = params.slug;
+    const id = (await params).id;
     let product: Product | undefined;
     try {
         product = await serviceGetProductById(id);

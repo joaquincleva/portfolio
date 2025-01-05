@@ -75,8 +75,8 @@ const ProductPage = () => {
         const box = boxRef.current;
         if (!box) return;
 
-        const posX = (e.pageX / (window.innerWidth * 1.25)) * 100;
-        const posY = (e.pageY / (window.innerHeight >= 1280 ? (window.innerHeight) : (window.innerHeight * 1.75))) * 100;
+        const posX = (e.pageX / (typeof window === "undefined" ? 1280 : window.innerWidth * 1.25)) * 100;
+        const posY = (e.pageY / (typeof window === "undefined" ? 720 : window.innerHeight >= 1280 ? (window.innerHeight) : (window.innerHeight * 1.75))) * 100;
 
         if (backgroundImage) {
             box.style.backgroundImage = backgroundImage;
