@@ -42,12 +42,13 @@ export default function RootLayout({
       <CartProvider>
         <html lang="en">
           <body
-            className={`${geistSans.variable} ${geistMono.variable} bg-gradient-to-b from-[#000] to-[#1a1a1a] antialiased flex flex-col max-w-screen min-w-screen h-full min-h-screen scrollbar-custom justify-between items-center`}
+          style={{maxWidth: "100vw"}}
+            className={`${geistSans.variable} ${geistMono.variable} bg-gradient-to-b from-[#000] to-[#1a1a1a] antialiased flex flex-col max-w-screen h-full min-h-screen scrollbar-custom justify-between items-center`}
           >
             <Navbar />
             {children}
-            <Footer />
             <Toaster />
+            <Footer />
           </body>
         </html>
       </CartProvider>

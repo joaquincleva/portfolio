@@ -33,7 +33,7 @@ const CartProducts = () => {
     }, []);
 
     return (
-        <div ref={sectionRef}  className={`flex flex-col gap-4 w-full max-w-3xl mx-auto overflow-auto transition-opacity duration-700 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
+        <div ref={sectionRef}  className={`flex flex-col gap-4 w-full h-full px-2 md:px-0 mx-auto overflow-auto transition-opacity duration-700 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
             {cartContext.map((product) => (
                 <Card
                     key={product.product.id}
@@ -43,24 +43,24 @@ const CartProducts = () => {
                         <img
                             src={product.product.mainImage}
                             alt={product.product.name}
-                            className="w-16 h-16 object-cover rounded-lg"
+                            className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 xl:w-20 xl:h-20 2xl:w-28 2xl:h-28 object-cover rounded-lg"
                         />
                         <div>
-                            <h3 className="text-lg font-semibold">
+                            <h3 className="text-xs sx:text-sm sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl font-semibold">
                                 {product.product.name}
                             </h3>
                         </div>
                     </div>
                     <div className="flex items-center gap-1">
-                        <p className="text-base">
+                        <p className="text-xs sx:text-sm sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl">
                             ${" "}
                             {(
                                 product.product.price *
                                 (1 - (product.product.offerPercentage || 0))
                             ).toFixed(2)}
                         </p>
-                        <p className="text-base text-[#de942c]">x{product.quantity}</p>
-                        <p className="text-lg px-4 font-semibold">
+                        <p className="text-xs sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl text-[#de942c]">x{product.quantity}</p>
+                        <p className="text-xs sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl px-4 font-semibold">
                             ${" "}
                             {(
                                 product.product.price *
@@ -69,7 +69,7 @@ const CartProducts = () => {
                             ).toFixed(2)}
                         </p>
                         <Trash2Icon
-                            className="text-red-500 h-6 w-6 cursor-pointer"
+                            className="text-red-500 h-4 w-4 sm:h-6 sm:w-6 xl:w-7 xl:h-7 2xl:w-10 2xl:h-10 cursor-pointer"
                             onClick={() => {
                                 const newCart = cartContext.filter(
                                     (cartProduct) =>

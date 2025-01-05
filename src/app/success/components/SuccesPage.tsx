@@ -9,9 +9,9 @@ import { useRouter } from "next/navigation";
 const SuccessPage = () => {
     const { setCartContext } = useCartContext();
     const router = useRouter()
-    const [buyedProducts, setBuyedProducts] = useState<CartProductType[]>([]);
     const [redirectTime, setRedirectTime] = useState(15);
 
+    const [buyedProducts, setBuyedProducts] = useState<CartProductType[]>([]);
     useEffect(() => {
         const cartData = localStorage.getItem("cartData");
         if (cartData) {
@@ -44,44 +44,44 @@ const SuccessPage = () => {
     }, []);
 
     return (
-        <div className="flex relative w-full pt-24 pb-8 flex-col items-center justify-center min-h-screen bg-white">
+        <div className="flex relative w-full pt-24 px-4 pb-8 flex-col items-center justify-center min-h-[83vh] bg-white">
             <Confetti
-                width={window.innerWidth - 15}
+                className="h-full w-full"
                 numberOfPieces={100}
             />
-            <Card className="bg-gray-200 max-w-1/3 gap-2 flex flex-col p-6 items-center">
-                <h1 className="text-3xl font-bold text-green-600">Purchase Successful!</h1>
+            <Card className="bg-gray-200 w-full gap-2 flex flex-col p-6 px-1.5 sm:px-2 md:x-4 lg:px-6 items-center">
+                <h1 className="text-lg md:text-xl xl:text-3xl 2xl:text-3xl font-bold text-green-600">Purchase Successful!</h1>
                 <Separator className="bg-gray-500 mt-3" />
-                <p className="mt-4 font-light text text-center w-2/3 mb-3">
+                <p className="mt-4 font-light text text-center w-full lg:w-2/3 mb-3">
                     Thank you for your purchase. Your order has been placed successfully. You will be redirected to the homepage in {redirectTime} seconds.
                 </p>
-                {buyedProducts.map((product) => (
+                {buyedProducts.map((product: CartProductType, index: number) => (
                     <Card
-                        key={product.product.id}
+                        key={index}
                         className="flex items-center justify-between w-full px-4 py-2 bg-gray-100 border-b border-gray-300"
                     >
                         <div className="flex items-center gap-4">
                             <img
                                 src={product.product.mainImage}
                                 alt={product.product.name}
-                                className="w-16 h-16 object-cover rounded-lg"
+                                className="w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16 xl:w-20 xl:h-20 2xl:w-28 2xl:h-28  object-cover rounded-lg"
                             />
                             <div>
-                                <h3 className="text-lg font-semibold">
+                                <h3 className="text-xs sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl font-semibold">
                                     {product.product.name}
                                 </h3>
                             </div>
                         </div>
                         <div className="flex items-center gap-1">
-                            <p className="text-base">
+                            <p className="text-xs sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl">
                                 ${" "}
                                 {(
                                     product.product.price *
                                     (1 - (product.product.offerPercentage || 0))
                                 ).toFixed(2)}
                             </p>
-                            <p className="text-base text-[#de942c]">x{product.quantity}</p>
-                            <p className="text-lg px-4 font-semibold">
+                            <p className="text-xs sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl text-[#de942c]">x{product.quantity}</p>
+                            <p className="text-xs sm:text-base md:text-lg xl:text-2xl 2xl:text-3xl px-4 font-semibold">
                                 ${" "}
                                 {(
                                     product.product.price *

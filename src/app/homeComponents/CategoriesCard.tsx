@@ -37,10 +37,10 @@ const CategoriesCard = ({ categories, products }: CategoriesCardProps) => {
     }, []);
 
     return (
-        <div ref={sectionRef} className={`w-full flex-wrap justify-center gap-6 px-10 flex py-16 transition-opacity duration-700 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
+        <div ref={sectionRef} className={`w-full flex-wrap justify-center gap-6 gap-y-10 lg:gap-y-0 px-10 flex py-16 transition-opacity duration-700 ${isVisible ? "animate-fadeInUp" : "opacity-0"}`}>
             {categories.map((item: Category, index: number) => (
 
-                <Card key={index} className="w-[23%] bg-transparent text-white hover:text-black hover:bg-white hover:border-[#de942c] border p-0 border-blue-500 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] group hover:-translate-y-3 transition-all delay-100 duration-300">
+                <Card key={index} className="xl:w-[23%] lg:w-[30%] w-full bg-transparent text-white hover:text-black hover:bg-white bg-black hover:border-[#de942c] border p-0 border-blue-500 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] group hover:-translate-y-3 transition-all delay-100 duration-300">
                     <CardHeader className="h-36 rounded-t-xl grayscale group-hover:grayscale-0 transition-all delay-300 duration-300"
                         style={{
                             backgroundImage: `url('${item.image}')`,

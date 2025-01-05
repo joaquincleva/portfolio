@@ -15,7 +15,7 @@ const ProductsSidebar = ({ filters, setFilters, categories }: ProductsSidebarPro
         <Sidebar className='h-full'>
             <SidebarGroup>
 
-                <SidebarContent className='h-full w-1/6 fixed flex flex-col gap-y-4 py-4 pl-1'>
+                <SidebarContent className='h-full mt-20 lg:mt-0 flex flex-col gap-y-4 py-4 pl-1'>
                     <Input
                         className='z-50 w-auto mr-4'
                         type="text"
@@ -61,7 +61,7 @@ const ProductsSidebar = ({ filters, setFilters, categories }: ProductsSidebarPro
                     <div className="relative flex items-center">
                         <p className="absolute left-4 top-1/2 transform -translate-y-1/2">%</p>
                         <Input
-                            className='z-50 w-auto mr-3 pl-8 text-right'
+                            className='z-50 w-full mr-4 pl-8 text-right'
                             type="number"
                             step={1}
                             placeholder="Min. Discount"

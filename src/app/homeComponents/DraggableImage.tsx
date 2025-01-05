@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 
 const DraggableImage = ({images}:{images:String[]}) => {
-  const [position, setPosition] = useState({ x: 50, y: 250 });
+  const [position, setPosition] = useState({ x: 75, y: 250 });
   const [velocity, setVelocity] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
@@ -94,6 +94,7 @@ const DraggableImage = ({images}:{images:String[]}) => {
       }}
     >
       <div
+        className="legt-8 top-48"
         onMouseDown={handleMouseDown}
         style={{
           position: `absolute`,

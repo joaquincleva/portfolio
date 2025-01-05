@@ -43,7 +43,7 @@ const PaymentForm = () => {
 
     const renderInput = (label: string, field: keyof typeof formik.values, placeholder: string) => (
         <div>
-            <label className="block text-sm font-medium text-gray-700">{label}</label>
+            <label className="block text-sm lg:text-base xl:text-lg 2xl:text-xl font-medium text-gray-700">{label}</label>
             <Input placeholder={placeholder} className="bg-white" {...formik.getFieldProps(field)} />
             {formik.touched[field] && formik.errors[field] && (
                 <p className="text-red-500 text-sm mt-1">{formik.errors[field]}</p>
@@ -52,7 +52,7 @@ const PaymentForm = () => {
     );
 
     return (
-        <Card className="bg-gray-100 p-8 my-4">
+        <Card className="bg-gray-100 p-8 my-4 w-full xl:w-5/6">
             <Tabs defaultValue="credit-card" className="w-full">
                 <TabsList className="w-full bg-gray-100">
                     <TabsTrigger value="credit-card">Credit Card</TabsTrigger>

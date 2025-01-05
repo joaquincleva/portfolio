@@ -37,20 +37,20 @@ const HeroSection = ({ categoriesCount, salesCount, productsCount, texts, curren
     };
 
     return (
-        <div className="w-full text-white justify-center flex items-center  mb-24">
+        <div className="w-full text-white justify-center xl:justify-evenly flex items-center pb-28 flex-col-reverse lg:flex-row">
             <div className="flex flex-col gap-4 font-extrabold">
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col-reverse lg:flex-row items-center gap-x-4 gap-y-4 lg:gap-y-0">
                     <img src="./funkoLogo.png" width={175} />
-                    <span className="text-4xl pt-4 uppercase font-extrabold text-[#de942c] font-mono">{currentText}{currentText.length !== texts[currentIndex].length && "|"}</span>
+                    <span className="text-3xl lg:text-4xl pt-4 uppercase font-extrabold text-[#de942c] font-mono">{currentText}{currentText.length !== texts[currentIndex].length && "|"}</span>
                 </div>
-                <p className="flex flex-col text-4xl ">
+                <p className="flex flex-col text-4xl xl:text-6xl text-center lg:text-left">
                     Your Official Funko Pop Store!
                 </p>
-                <p className="w-1/2">
+                <p className="w-full lg:w-1/2 2xl:w-[1/4] 2xl:text-2xl text-center lg:text-left">
                     Discover the largest collection of exclusive Funko Pop!, limited editions and your favorite characters in one place.
                 </p>
-                <div className="flex flex-col ">
-                    <p className="flex items-end gap-2 text-[#de942c] cursor-pointer group text-xl my-4 mb-6 w-1/4 py-1">
+                <div className="flex flex-col items-center lg:items-start">
+                    <p className="flex items-end gap-2 text-[#de942c] cursor-pointer group text-xl my-4 mb-6 w-full text-center justify-center lg:justify-start lg:w-1/4 py-1">
                         <span className="group-hover:border-b-2 border-[#de942c] ">Buy Now! </span>
                         <ArrowUpRight className="group-hover:border-b-2 pb-1 border-[#de942c] " />
                     </p>
@@ -72,7 +72,7 @@ const HeroSection = ({ categoriesCount, salesCount, productsCount, texts, curren
             </div>
             <div
                 ref={containerRef}
-                className="relative w-[600px] p-10 flex items-center justify-center overflow-hidden"
+                className="relative w-[250px] sm:w-[350px] md:w-[450px] lg:w-[700px] xl:w-[800x] p-10 flex items-center justify-center overflow-hidden"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={resetTransform}
             >
@@ -80,8 +80,8 @@ const HeroSection = ({ categoriesCount, salesCount, productsCount, texts, curren
                     ref={boxRef}
                     className="relative box"
                 >
-                    <img className="absolute right-[-2rem] top-[-1.5rem]" src="./popLogo.png" width={125} />
-                    <img className="rounded-3xl " src="./flayer.jpeg" width={500} height={350} />
+                    <img className="absolute right-[-2rem] top-[-1.5rem] w-[75px] md:w-[100px] lg:w-[125px]" src="./popLogo.png" width={125} />
+                    <img className="rounded-3xl w-[175px] sm:w-[250px] md:w-[350px] lg:w-[500px] h-[175px] sm:h-[200px] md:h-[300px] lg:h-[450px]" src="./flayer.jpeg" />
                 </div>
             </div>
             <div className="air air1 mt-48"></div>

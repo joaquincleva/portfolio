@@ -144,7 +144,7 @@ const HomePage = () => {
   }, [categories, products]);
     return (
         <div className="relative mt-16 w-full h-auto z-10 justify-between">
-             <div className="absolute w-full max-w-screen h-full mx-auto flex items-center justify-center overflow-hidden">
+             <div className="absolute w-full max-w-screen  h-full mx-auto flex items-center justify-center overflow-hidden">
               <div className="line ml-[50%]"></div>
               <div className="line ml-[25%]"></div>
               <div className="line"></div>
@@ -152,7 +152,7 @@ const HomePage = () => {
               <div className="line mr-[50%]"></div>
             </div>
             <DraggableImage images={products.map((item) => item.hologramImage)} />
-            <div className="relative max-w-full w-full flex flex-col px-32">
+            <div className="relative max-w-full w-full px-32 mt-16">
                 <HeroSection
                     categoriesCount={categoriesCount}
                     salesCount={salesCount}
@@ -176,8 +176,8 @@ const HomePage = () => {
                         selectedDealProduct={selectedDealProduct} />
                     <BestSellingCarousel mostSealedProducts={mostSealedProducts} categories={categories} />
                     <CategoriesCard categories={categories} products={products} />
-                    <div key={1} className="w-full flex justify-center bg-white py-16 pt-20">
-                        {products.filter((_, index) => index <= 4).map((item:Product, index:number) => (
+                    <div key={1} className="w-full flex-wrap gap-y-16 flex justify-center bg-white py-16 pt-20">
+                        {products.filter((_, index) => index <= 9).map((item:Product, index:number) => (
                             <HologramCard key={index} index={index} item={item} categories={categories} />
                         ))}
                     </div>

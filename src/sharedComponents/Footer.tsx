@@ -3,7 +3,7 @@ import CodewarsLogo from "./CodewarsLogo";
 
 const Footer = () => {
     return <footer className=" text-white py-6 w-full z-[60]" >
-        <div className="flex justify-center space-x-6 mb-4">
+        <div className="flex justify-center space-x-2 lg:space-x-6 mb-4">
             <a href="https://www.linkedin.com/in/joaqu%C3%ADn-cleva-845657265/"
                 aria-label="Linkedin" className="hover:text-gray-400 hover:border-gray-400 border-2 rounded-full p-1.5">
                 <Linkedin className="w-5 h-5" />
