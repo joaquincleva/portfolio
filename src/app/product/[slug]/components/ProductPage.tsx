@@ -97,6 +97,7 @@ const ProductPage = () => {
         }
     };
 
+    // comment
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (zoomActive) {
             updateSpotlight(e, 'transparent 100px, rgba(0, 0, 0, 0.80) 120px');
